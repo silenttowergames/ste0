@@ -1,0 +1,43 @@
+{
+    "configurations": [
+        {
+            "name": "Win64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\C\\libs\\gcc\\64\\SDL2-2.0.12\\include",
+                "C:\\C\\libs\\gcc\\64\\FNA3D-master\\include",
+                "C:\\C\\libs\\gcc\\64\\FNA3D-master\\MojoShader",
+                "C:\\C\\libs\\gcc\\64\\flecs-master\\include",
+                "C:\\C\\libs\\gcc\\64\\soloud-custom\\include",
+                "C:\\C\\libs\\gcc\\64\\json-c-master",
+                "C:\\C\\libs\\gcc\\64\\lua-5.4.0\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.19041.0",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include",
+                "/C/libs/gcc/64/flecs-master/include",
+                "/C/libs/gcc/64/FNA3D-master/include",
+                "/C/libs/gcc/64/FNA3D-master/MojoShader",
+                "/C/libs/gcc/64/soloud-custom/include",
+                "/C/libs/gcc/64/json-c-master",
+                "/C/libs/gcc/64/lua-5.4.0/include",
+                "/C/libs/gcc/64/stonetowerengine/src"
+            ],
+            "cStandard": "c99"
+        }
+    ],
+    "version": 4
+}
