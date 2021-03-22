@@ -7,31 +7,6 @@
 
 ECS_Setup(DECLARE, );
 
-// NOW
-// TODO: RenderTarget draw resolution (e.g. Retro Slasher's resolution vs size; X stretch)
-// TODO: Print and/or log an error when an asset can't be loaded
-// FIXME: Low framerate speed seems broken
-// FIXME: Vsync seems broken, maybe do no manual timestep for vsync?
-// TODO: Option for Flecs timestep, since it doesn't burn CPU
-// TODO: Get controller type, for displaying correct button
-// TODO: Keybinding example?
-
-// FINALIZE
-// TODO: Clean up code
-// TODO: Get relative DLL paths working
-// TODO: Turn engine into DLL, create example project
-
-// LATER
-// TODO: Save state, including gameData
-// TODO: Console cursor navigation: arrow left, arrow right, Home, End?
-// TODO: Console feedback? Maybe write it on the next line or something?
-// TODO: Console scaling?
-// TODO: Window icon
-// FIXME: DirectX not working
-// TODO: Dialogue system
-// TODO: Sound: only play if there are none playing currently
-// TODO: Different kinds of windowZoom
-
 void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
@@ -152,8 +127,8 @@ int main(int arcg, char* argv[])
     
     textures(
         2,
-        Texture_Create(app.renderState.device, "16x16", 16, 16, 0, 0, 0, 0),
-        Texture_Create(app.renderState.device, "8x8", 8, 8, 0, 0, 0, 0)
+        Texture_Create(&app, "16x16", 16, 16, 0, 0, 0, 0),
+        Texture_Create(&app, "8x8", 8, 8, 0, 0, 0, 0)
     );
     
     maps(
@@ -164,13 +139,13 @@ int main(int arcg, char* argv[])
     
     shaders(
         1,
-        Shader_Create(app.renderState.device, "CRTShader", ShaderUpdate_Disable)
+        Shader_Create(&app, "CRTShader", ShaderUpdate_Disable)
     );
     
     scripts(
         2,
-        LuaScript_Load("test"),
-        LuaScript_Load("test2")
+        LuaScript_Load(&app, "test"),
+        LuaScript_Load(&app, "test2")
     );
     
     fonts(
@@ -197,8 +172,8 @@ int main(int arcg, char* argv[])
     
     renderTargets(
         2,
-        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, }),
-        RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
+        RenderTarget_Create(&app, (int2d){ 200, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, }),
+        RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
     );
     
     /*

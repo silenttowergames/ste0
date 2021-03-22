@@ -78,12 +78,12 @@ fi
 
 for i in $(seq 1 ${#INCS[*]})
 do
-    INCS[$i - 1]='-I/C/libs/'$COMPILER'/'$PLATFORM'/'${INCS[$i - 1]}
+    INCS[$i - 1]='-I/C/libs/gcc/'$PLATFORM'/'${INCS[$i - 1]}
 done
 
 for i in $(seq 1 ${#LIBS[*]})
 do
-    LIBS[$i - 1]='-L/C/libs/'$COMPILER'/'$PLATFORM'/'${LIBS[$i - 1]}
+    LIBS[$i - 1]='-L/C/libs/gcc/'$PLATFORM'/'${LIBS[$i - 1]}
 done
 
 for i in $(seq 1 ${#LFLAGS[*]})
