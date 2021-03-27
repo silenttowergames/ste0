@@ -11,6 +11,7 @@ void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
     
+    //ECS_SYSTEM(world, FPSPrintSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, PauseMenuSystem, EcsOnUpdate, Menu, PauseMenu);
@@ -171,9 +172,9 @@ int main(int arcg, char* argv[])
     );
     
     renderTargets(
-        2,
-        RenderTarget_Create(&app, (int2d){ 200, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, }),
-        RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
+        1,
+        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
+        //RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
     );
     
     /*

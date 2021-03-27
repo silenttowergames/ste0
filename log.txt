@@ -1,0 +1,12 @@
+double free or corruption (out)
+double free or corruption (!prev)
+munmap_chunk(): invalid pointer
+munmap_chunk(): invalid pointer
+free(): invalid pointer
+free(): invalid pointer
+munmap_chunk(): invalid pointer
+munmap_chunk(): invalid pointer
+free(): invalid pointer
+free(): invalid pointer
+munmap_chunk(): invalid pointer
+double free or corruption (!prev)
