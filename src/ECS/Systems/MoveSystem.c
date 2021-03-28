@@ -23,7 +23,7 @@ void MoveSystem(ecs_iter_t* it)
 	
 	if(keys(Pressed, v))
 	{
-		//soundPlayFull("hit.ogg", 1.0f, 0.0f, 0.0f, 1.0f, false);
+		soundPlayFull("hit.ogg", 1.0f, 0.0f, 0.0f, 1.0f, false);
 	}
 	
 	if(keys(Pressed, x))
@@ -61,34 +61,31 @@ void MoveSystem(ecs_iter_t* it)
 		
 		if(keys(Down, RIGHT) || button(Down, 0, DPAD_RIGHT) || button(Down, 0, STICK_LEFT_RIGHT))
 		{
-			b[i].velocity.X += a[i].speed * fdelta();
+			b[i].velocity.X += a[i].speed;
 		}
 		
 		if(keys(Down, LEFT) || button(Down, 0, DPAD_LEFT) || button(Down, 0, STICK_LEFT_LEFT))
 		{
-			b[i].velocity.X -= a[i].speed * fdelta();
+			b[i].velocity.X -= a[i].speed;
 		}
 		
 		if(keys(Down, DOWN) || button(Down, 0, DPAD_DOWN) || button(Down, 0, STICK_LEFT_DOWN))
 		{
-			b[i].velocity.Y += a[i].speed * fdelta();
+			b[i].velocity.Y += a[i].speed;
 		}
 		
 		if(keys(Down, UP) || button(Down, 0, DPAD_UP) || button(Down, 0, STICK_LEFT_UP))
 		{
-			b[i].velocity.Y -= a[i].speed * fdelta() * (keys(Down, LSHIFT) ? 0.0375f : 1);
+			b[i].velocity.Y -= a[i].speed;
 		}
 		
 		if(button(Pressed, 0, X))
 		{
-			printf("Runble 0\n");
-			//rumble(0, 1.0f, 500);
 			rumble(0, 0xFFFF, 0xFFFF, 500);
 		}
 		
 		if(button(Released, 1, X))
 		{
-			printf("Runble 1\n");
 			rumble(1, 0xFFFF, 0xFFFF, 500);
 		}
 	}

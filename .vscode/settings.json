@@ -83,6 +83,7 @@
         "soundinstance.h": "c",
         "luascriptfunctions.h": "c",
         "config.h": "c",
-        "flecs.h": "c"
+        "flecs.h": "c",
+        "movesystem.h": "c"
     }
 }

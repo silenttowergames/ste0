@@ -11,7 +11,7 @@ void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
     
-    //ECS_SYSTEM(world, FPSPrintSystem, EcsOnUpdate, 0);
+    ECS_SYSTEM(world, FPSPrintSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, PauseMenuSystem, EcsOnUpdate, Menu, PauseMenu);
@@ -22,7 +22,8 @@ void initWorld(ecs_world_t* world)
     
     MenuSystem_Init();
     
-    ECS_SYSTEM(world, DebugMovableSystem, EcsOnUpdate, Renderable, Body);
+    DebugMovableSystem_Init();
+    
     ECS_SYSTEM(world, CameraFollowSystem, EcsOnUpdate, Body, CameraFollow, Renderable);
     ECS_SYSTEM(world, DepthSystem, EcsOnUpdate, Body, Renderable);
     ECS_SYSTEM(world, AnimateSystem, EcsOnUpdate, Animate, Renderable);
@@ -59,13 +60,15 @@ void init2Scene(ecs_world_t* world)
     
     //factoryRun(app, "TextBox", -20, -20, 2, NULL);
     
-    for(int x = 0; x < 8; x++)
+    for(int x = 0; x < 24; x++)
     {
-        for(int y = 0; y < 8; y++)
+        for(int y = 0; y < 24; y++)
         {
-            //factoryRun(app, "NPC", 80 + (x * 12), 80 + (y * 12), 2, NULL);
+            factoryRun(app, "NPC", 80 + (x * 12), 80 + (y * 12), 2, NULL);
         }
     }
+    
+    factoryRun(app, "Player", 72, 72, 2, NULL);
     
     factoryRun(app, "TestMenu", -120, -40, 5, NULL);
 }
@@ -107,7 +110,7 @@ int main(int arcg, char* argv[])
         320, 180,
         1024, 1024,
         initWorld,
-        "map0",
+        "map1",
         RSZ_Floor
     );
     
