@@ -60,15 +60,13 @@ void init2Scene(ecs_world_t* world)
     
     //factoryRun(app, "TextBox", -20, -20, 2, NULL);
     
-    for(int x = 0; x < 24; x++)
+    for(int x = 0; x < 2; x++)
     {
-        for(int y = 0; y < 24; y++)
+        for(int y = 0; y < 3; y++)
         {
             factoryRun(app, "NPC", 80 + (x * 12), 80 + (y * 12), 2, NULL);
         }
     }
-    
-    factoryRun(app, "Player", 72, 72, 2, NULL);
     
     factoryRun(app, "TestMenu", -120, -40, 5, NULL);
 }
@@ -110,7 +108,7 @@ int main(int arcg, char* argv[])
         320, 180,
         1024, 1024,
         initWorld,
-        "map1",
+        "map0",
         RSZ_Floor
     );
     
@@ -142,8 +140,9 @@ int main(int arcg, char* argv[])
     );
     
     shaders(
-        1,
-        Shader_Create(&app, "CRTShader", ShaderUpdate_Disable)
+        2,
+        Shader_Create(&app, "CRTShader", ShaderUpdate_Disable),
+        Shader_Create(&app, "YellowShader", NULL)
     );
     
     scripts(
@@ -180,10 +179,14 @@ int main(int arcg, char* argv[])
         //RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
     );
     
-    /*
+    //*
+    app.renderState.targets[0].shadersCount = 1;
+    app.renderState.targets[0].shaders = malloc(sizeof(Shader*) * app.renderState.targets[0].shadersCount);
+    app.renderState.targets[0].shaders[0] = *mapGet(app.assetManager.mapShader, "YellowShader", Shader*);
     app.renderState.mainRenderTarget.shadersCount = 1;
     app.renderState.mainRenderTarget.shaders = malloc(sizeof(Shader*) * app.renderState.mainRenderTarget.shadersCount);
     app.renderState.mainRenderTarget.shaders[0] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
+    //app.renderState.mainRenderTarget.shaders[1] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
     //*/
     
     ConsoleCommand_AddAll(

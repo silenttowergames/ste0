@@ -27,7 +27,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 0, 0, 255),
             0,
-            "This Is A Menu!"
+            "This Is A Menu!",
+            false
         )
     );
     menuEasy(items, currentItem, e, 5, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, false);
@@ -45,7 +46,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 255, 255, 255),
             0,
-            "Item 0"
+            "Item 0",
+            false
         ),
         MenuItem_Select_Test,
         NULL
@@ -63,7 +65,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 255, 255, 255),
             0,
-            "Item 1"
+            "Item 1",
+            false
         ),
         MenuItem_Select_Test,
         NULL
@@ -81,7 +84,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 255, 255, 255),
             0,
-            "Disable"
+            "Disable",
+            false
         ),
         MenuItem_Select_Disable,
         NULL
@@ -99,7 +103,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 255, 255, 255),
             0,
-            "Item 3"
+            "Item 3",
+            false
         ),
         MenuItem_Select_Test,
         NULL
@@ -117,7 +122,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 255, 255, 255),
             0,
-            "Item 4"
+            "Item 4",
+            false
         ),
         MenuItem_Select_Test,
         NULL

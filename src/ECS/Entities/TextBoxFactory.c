@@ -24,7 +24,8 @@ ecs_entity_t TextBoxFactory(ecs_world_t* world, float X, float Y, int layer, Til
             1,
             colorU(0, 0, 255, 255),
             0,
-            "Retro"
+            "Retro",
+            false
         )
     );
     
