@@ -101,7 +101,7 @@ int main(int arcg, char* argv[])
     
     init(
         "Engine Test",
-        "v1.0.5 alpha",
+        "v1.0.0",
         "OpenGL",
         60,
         config,
