@@ -47,7 +47,7 @@
                 {
                  "gid":1,
                  "height":8,
-                 "id":1,
+                 "id":6,
                  "name":"",
                  "properties":[
                         {
@@ -64,49 +64,135 @@
                  "type":"NPC",
                  "visible":true,
                  "width":8,
-                 "x":16,
-                 "y":40
-                }, 
-                {
-                 "gid":19,
-                 "height":8,
-                 "id":2,
-                 "name":"",
-                 "rotation":0,
-                 "type":"bed",
-                 "visible":true,
-                 "width":8,
-                 "x":216,
-                 "y":24
-                }, 
-                {
-                 "gid":20,
-                 "height":8,
-                 "id":3,
-                 "name":"",
-                 "rotation":0,
-                 "type":"lamp",
-                 "visible":true,
-                 "width":8,
-                 "x":224,
+                 "x":32,
                  "y":24
                 }, 
                 {
                  "gid":1,
                  "height":8,
-                 "id":4,
+                 "id":10,
                  "name":"",
                  "properties":[
                         {
-                         "name":"modify",
-                         "type":"bool",
-                         "value":false
+                         "name":"hello",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"hi",
+                         "type":"float",
+                         "value":5.76
+                        }],
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":8,
+                 "x":32,
+                 "y":40
+                }, 
+                {
+                 "gid":1,
+                 "height":8,
+                 "id":11,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hello",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"hi",
+                         "type":"float",
+                         "value":5.76
+                        }],
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":40
+                }, 
+                {
+                 "gid":3,
+                 "height":8,
+                 "id":12,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"test",
+                         "type":"string",
+                         "value":"asdfasdf"
                         }],
                  "rotation":0,
                  "type":"Player",
                  "visible":true,
                  "width":8,
-                 "x":32,
+                 "x":98.7567735907817,
+                 "y":86.8277795079415
+                }, 
+                {
+                 "gid":3,
+                 "height":8,
+                 "id":13,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"test",
+                         "type":"string",
+                         "value":"asdfasdf"
+                        }],
+                 "rotation":0,
+                 "type":"Player",
+                 "visible":true,
+                 "width":8,
+                 "x":112,
+                 "y":72
+                }, 
+                {
+                 "gid":1,
+                 "height":8,
+                 "id":14,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hello",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"hi",
+                         "type":"float",
+                         "value":5.76
+                        }],
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":8,
+                 "x":88,
+                 "y":128
+                }, 
+                {
+                 "gid":1,
+                 "height":8,
+                 "id":15,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"hello",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"hi",
+                         "type":"float",
+                         "value":5.76
+                        }],
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":8,
+                 "x":88,
                  "y":40
                 }],
          "opacity":1,
@@ -128,10 +214,10 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":5,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.1",
+ "tiledversion":"1.4.3",
  "tileheight":8,
  "tilesets":[
         {

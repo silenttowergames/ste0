@@ -95,7 +95,7 @@ void ShaderUpdate_Disable(void* _app, void* _renderTarget, void* _shader)
 
 int main(int arcg, char* argv[])
 {
-    configDefault(config, 1280, 720, "en", false);
+    configDefault(config, 1280, 720, "en", true);
     
     printf("M: %f\nS: %f\nM: %f\n", config.volumeMaster, config.volumeSFX, config.volumeMusic);
     

@@ -12,7 +12,7 @@
         {
             "type": "shell",
             "label": "Windows 64-bit Build GCC",
-            "command": "./build-win64-gcc.ps1"
+            "command": "./testO.ps1"
         }
     ],
 }

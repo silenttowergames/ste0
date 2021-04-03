@@ -84,6 +84,7 @@
         "luascriptfunctions.h": "c",
         "config.h": "c",
         "flecs.h": "c",
-        "movesystem.h": "c"
+        "movesystem.h": "c",
+        "factory.h": "c"
     }
 }
