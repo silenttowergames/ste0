@@ -104,7 +104,7 @@ fi
 
 echo Final compilation...
 
-$COMPILERPP -m${PLATFORM} -pthread -g ${OBJS[*]} /C/libs/gcc/64/stonetowerengine/StoneTower.o /C/libs/gcc/64/soloud-custom/built/*.o `sdl2-config --libs` ${INCS[*]} ${LIBS[*]} ${LFLAGS[*]} -Wl,-rpath=\$ORIGIN/libs -o ./bin/linux${PLATFORM}/${COMPILER}/main
+$COMPILERPP -m${PLATFORM} -pthread -g ${OBJS[*]} StoneTower.o /C/libs/gcc/64/soloud-custom/built/*.o `sdl2-config --libs` ${INCS[*]} ${LIBS[*]} ${LFLAGS[*]} -Wl,-rpath=\$ORIGIN/libs -o ./bin/linux${PLATFORM}/${COMPILER}/main
 
 let END=`date +%s%N`-$START
 let ENDMS=$END/1000000

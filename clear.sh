@@ -3,6 +3,8 @@ cd /C/libs/gcc/64/stonetowerengine/
 ./build-linux64-gcc.sh
 cd $DIR
 
+cp /C/libs/gcc/64/stonetowerengine/StoneTower.o StoneTower.o
+
 function checkDir {
     local DIR=$1'/*'
     
