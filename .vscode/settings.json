@@ -85,6 +85,8 @@
         "config.h": "c",
         "flecs.h": "c",
         "movesystem.h": "c",
-        "factory.h": "c"
+        "factory.h": "c",
+        "scenefunctions.h": "c",
+        "shaderfunctions.h": "c"
     }
 }

@@ -31,68 +31,6 @@ void initWorld(ecs_world_t* world)
     DrawSystem_Init();
 }
 
-void initializeScene(ecs_world_t* world)
-{
-    ctx();
-    
-    factoryRun(app, "Player", -32, 0, 0, NULL);
-    
-    factoryRun(app, "NPC", 32, 0, 0, NULL);
-    factoryRun(app, "NPC", 0, 32, 0, NULL);
-    factoryRun(app, "NPC", 32, 32, 0, NULL);
-    
-    factoryRun(app, "NPC", 32, -96, 0, NULL);
-    factoryRun(app, "NPC", 32, -80, 0, NULL);
-    factoryRun(app, "NPC", 32, -64, 0, NULL);
-    factoryRun(app, "NPC", 32, -48, 0, NULL);
-    
-    factoryRun(app, "NPC", 16, -56, 0, NULL);
-    factoryRun(app, "NPC", 16, -72, 0, NULL);
-    factoryRun(app, "NPC", 16, -88, 0, NULL);
-    
-    factoryRun(app, "TextBox", -20, -85, 2, NULL);
-    factoryRun(app, "TextBox", 0, 0, 2, NULL);
-}
-
-void init2Scene(ecs_world_t* world)
-{
-    ctx();
-    
-    //factoryRun(app, "TextBox", -20, -20, 2, NULL);
-    
-    for(int x = 0; x < 2; x++)
-    {
-        for(int y = 0; y < 3; y++)
-        {
-            factoryRun(app, "NPC", 80 + (x * 12), 80 + (y * 12), 2, NULL);
-        }
-    }
-    
-    factoryRun(app, "TestMenu", -120, -40, 5, NULL);
-}
-
-int Time = 0;
-
-void ShaderUpdate_Disable(void* _app, void* _renderTarget, void* _shader)
-{
-    sctx();
-    
-    if(keys(Pressed, s))
-    {
-        shader->disabled = !shader->disabled;
-    }
-    
-    Time += rand() % 5;
-    
-    Shader_ParamCopy(shader, "Width", &renderTarget->size.X, sizeof(int));
-    Shader_ParamCopy(shader, "Height", &renderTarget->size.Y, sizeof(int));
-    
-    float tmod = (sinf(Time * 64.0f) * 0.01f) + 0.99f;
-    tmod = 1;
-    
-    Shader_ParamCopy(shader, "tmod", &tmod, sizeof(float));
-}
-
 int main(int arcg, char* argv[])
 {
     configDefault(config, 1280, 720, "en", true);
@@ -108,7 +46,7 @@ int main(int arcg, char* argv[])
         320, 180,
         1024, 1024,
         initWorld,
-        "map0",
+        "map1",
         RSZ_Floor
     );
     
@@ -122,8 +60,8 @@ int main(int arcg, char* argv[])
     scenes(
         4,
         scene(initialize),
-        sceneTiled("map1", NULL),
-        sceneTiled("map0", init2Scene),
+        sceneTiled("map1", init2Scene),
+        sceneTiled("map0", NULL),
         scene(init2)
     );
     

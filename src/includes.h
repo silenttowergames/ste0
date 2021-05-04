@@ -10,3 +10,7 @@
 
 #include "ECS/Systems/AINPCSystem.h"
 #include "ECS/Systems/MoveSystem.h"
+
+#include "Scenes/SceneFunctions.h"
+
+#include "ShaderFunctions.h"
