@@ -35,7 +35,7 @@ int main(int arcg, char* argv[])
 {
     configDefault(config, 1280, 720, "en", true);
     
-    printf("M: %f\nS: %f\nM: %f\n", config.volumeMaster, config.volumeSFX, config.volumeMusic);
+    //printf("M: %f\nS: %f\nM: %f\n", config.volumeMaster, config.volumeSFX, config.volumeMusic);
     
     init(
         "Engine Test",
@@ -64,6 +64,8 @@ int main(int arcg, char* argv[])
         sceneTiled("map0", NULL),
         scene(init2)
     );
+    
+    /* RESOURCES */
     
     textures(
         2,
@@ -103,18 +105,19 @@ int main(int arcg, char* argv[])
         Sound_create_sfxr("sfxr", Play_Default, SoundCategory_SFX)
     );
     
+    renderTargets(
+        1,
+        RenderTarget_Create(&app, (int2d){ 80, 90, }, (int2d){ 160, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
+    );
+    
+    /* RESOURCES */
+    
     factories(
         4,
         factory(Player),
         factory(NPC),
         factory(TextBox),
         factory(TestMenu)
-    );
-    
-    renderTargets(
-        1,
-        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
-        //RenderTarget_Create(&app, (int2d){ 80, 80, }, (int2d){ 80, 80, }, (int2d){ 40, 40, }, false, (FNA3D_Vec4){ 1, 1, 1, 0.5f, })
     );
     
     //*
