@@ -36,6 +36,16 @@ switch($cmd)
         $template = str_replace('_____NAME_____', $argv[0], $template);
         file_put_contents('./src/ECS/Entities/' . $argv[0] . 'Factory.c', $template);
     } break;
+    
+    case 'assets':
+    {
+        include 'assets.php';
+    }
+    
+    case 'ecs-dec':
+    {
+        include 'ecs_declarations.php';
+    }
 }
 
 ?>

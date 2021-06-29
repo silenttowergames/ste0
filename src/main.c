@@ -11,7 +11,6 @@ void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
     
-    ECS_SYSTEM(world, FPSPrintSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, PauseMenuSystem, EcsOnUpdate, Menu, PauseMenu);
@@ -35,8 +34,6 @@ int main(int arcg, char* argv[])
 {
     configDefault(config, 1280, 720, "en", true);
     
-    //printf("M: %f\nS: %f\nM: %f\n", config.volumeMaster, config.volumeSFX, config.volumeMusic);
-    
     init(
         "Engine Test",
         "v1.0.0",
@@ -48,13 +45,6 @@ int main(int arcg, char* argv[])
         initWorld,
         "map1",
         RSZ_Floor
-    );
-    
-    gameDataInit(
-        3,
-        gdAttr("Integers", "hello", 27, Int),
-        gdAttr("Integers", "hiThere", 8, Int),
-        gdAttr("Strings", "alrighty", "Well! Hello.", String)
     );
     
     scenes(
@@ -107,7 +97,33 @@ int main(int arcg, char* argv[])
     
     renderTargets(
         1,
-        RenderTarget_Create(&app, (int2d){ 80, 90, }, (int2d){ 160, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
+        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
+    );
+    
+    gameDataInit(
+        8,
+        gdAttr("Bools", "isThisTrue", true, Bool),
+        gdAttr("Bools", "isThisFalse", false, Bool),
+        gdAttr("Floats", "piApprox", 3.141592, Float),
+        gdAttr("Floats", "piHello", 3.14, Float),
+        gdAttr("Integers", "hello", 27, Int),
+        gdAttr("Integers", "hiThere", 8, Int),
+        gdAttr("Strings", "alrighty", "Well! Hello.", String),
+        gdAttr("Strings", "helloWorld", "Hello, World!", String)
+    );
+    
+    ConsoleCommand_AddAll(
+        &app,
+        9,
+        ConsoleCommand_Create("exit", cmdExit),
+        ConsoleCommand_Create("play", cmdPlaySound),
+        ConsoleCommand_Create("volume", cmdVolume),
+        ConsoleCommand_Create("scene", cmdChangeScene),
+        ConsoleCommand_Create("pause", cmdPause),
+        ConsoleCommand_Create("unpause", cmdUnpause),
+        ConsoleCommand_Create("website", cmdWebsite),
+        ConsoleCommand_Create("reload-map", cmdReloadMap),
+        ConsoleCommand_Create("movable", cmdMovable)
     );
     
     /* RESOURCES */
@@ -129,20 +145,6 @@ int main(int arcg, char* argv[])
     app.renderState.mainRenderTarget.shaders[0] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
     //app.renderState.mainRenderTarget.shaders[1] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
     //*/
-    
-    ConsoleCommand_AddAll(
-        &app,
-        9,
-        ConsoleCommand_Create("exit", cmdExit),
-        ConsoleCommand_Create("play", cmdPlaySound),
-        ConsoleCommand_Create("volume", cmdVolume),
-        ConsoleCommand_Create("scene", cmdChangeScene),
-        ConsoleCommand_Create("pause", cmdPause),
-        ConsoleCommand_Create("unpause", cmdUnpause),
-        ConsoleCommand_Create("website", cmdWebsite),
-        ConsoleCommand_Create("reload-map", cmdReloadMap),
-        ConsoleCommand_Create("movable", cmdMovable)
-    );
     
     loop();
     

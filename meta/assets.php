@@ -199,6 +199,7 @@ define('SECTION_ASSETS', 2);
 $section = SECTION_NONE;
 $header = NULL;
 
+$gamedataCount = 0;
 $gamedata = [];
 $assets = [];
 
@@ -294,12 +295,13 @@ foreach($app as $line)
             
             $var = $var[0];
             
-            //echo "$var : $type = $val\n";
             $gamedata[$header][] = [
                 'name' => $var,
                 'type' => $type,
                 'value' => $val,
             ];
+            
+            $gamedataCount++;
         } break;
         
         case SECTION_ASSETS:
@@ -448,13 +450,47 @@ foreach($assets['renderTargets'] as $key => $renderTarget)
     }
 }
 $data[1] .= "    );\n    \n    ";
+// GameData
+$data[1] .= "gameDataInit(\n        " . $gamedataCount . ",\n        ";
+foreach($gamedata as $key => $list)
+{
+    static $i = 0;
+    foreach($list as $val)
+    {
+        $data[1] .= 'gdAttr("' . $key . '", "' . $val['name'] . '", ' . $val['value'] . ', ' . ucfirst($val['type']) . ')';
+        
+        if($i >= $gamedataCount - 1)
+        {
+            $data[1] .= "\n";
+        }
+        else
+        {
+            $data[1] .= ",\n        ";
+        }
+        
+        $i++;
+    }
+}
+$data[1] .= "    );\n    \n    ";
+// Console Commands
+$data[1] .= "ConsoleCommand_AddAll(\n        &app,\n        " . count($assets['consoleCommands']) . ",\n        ";
+foreach($assets['consoleCommands'] as $key => $cmd)
+{
+    $data[1] .= 'ConsoleCommand_Create("' . $cmd['title'] . '", ' . $cmd['callable'] . ')';
+    
+    if($key >= count($assets['consoleCommands']) - 1)
+    {
+        $data[1] .= "\n";
+    }
+    else
+    {
+        $data[1] .= ",\n        ";
+    }
+}
+$data[1] .= "    );\n    \n    ";
 
 // Put the file back
 $data = implode($div, $data);
 file_put_contents($file, $data);
-
-// Echo the data
-
-//echo print_r($assets, true);
 
 ?>
