@@ -5,6 +5,8 @@ void ShaderUpdate_Disable(void* _app, void* _renderTarget, void* _shader)
 {
     sctx();
     
+    shader->disabled = true;
+    
     if(keys(Pressed, s))
     {
         shader->disabled = !shader->disabled;
