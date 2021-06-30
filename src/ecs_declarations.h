@@ -7,8 +7,6 @@
 #define STE_ECS_COMPONENT_EXTERN(w, T) ECS_COMPONENT_EXTERN(T)
 
 #define ECS_Setup(de, w) \
-    STE_ECS_COMPONENT_ ## de(w, AINPC);\
-    STE_ECS_COMPONENT_ ## de(w, AIPlayer);\
     STE_ECS_COMPONENT_ ## de(w, Animate);\
     STE_ECS_COMPONENT_ ## de(w, BasicAABB);\
     STE_ECS_COMPONENT_ ## de(w, Body);\
@@ -19,6 +17,8 @@
     STE_ECS_COMPONENT_ ## de(w, Renderable);\
     STE_ECS_COMPONENT_ ## de(w, TiledMap);\
     STE_ECS_COMPONENT_ ## de(w, TiledObject);\
-    STE_ECS_COMPONENT_ ## de(w, TileLayerCollides)
+    STE_ECS_COMPONENT_ ## de(w, TileLayerCollides);\
+    STE_ECS_COMPONENT_ ## de(w, AINPC);\
+    STE_ECS_COMPONENT_ ## de(w, AIPlayer)
 
 ECS_Setup(EXTERN, );
