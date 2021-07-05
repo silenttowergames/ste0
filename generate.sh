@@ -1,1 +1,1 @@
-php ./meta/generate.php $1
+php ./meta/generate.php $@
