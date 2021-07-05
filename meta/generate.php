@@ -108,7 +108,7 @@ switch($cmd)
         
         if(count($src) != 3)
         {
-            die('More than two splitters found!');
+            die("More than two splitters found!\n");
         }
         
         $includes = "\n";
@@ -121,6 +121,11 @@ switch($cmd)
         $src = implode($splitter, $src);
         
         file_put_contents('./src/includes.h', $src);
+    }
+    
+    default:
+    {
+        die("Invalid parameter!\n");
     }
 }
 
