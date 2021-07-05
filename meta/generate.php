@@ -18,6 +18,55 @@ if(empty($argv))
 // Command
 $cmd = array_shift($argv);
 
+// Filter recursive for headers
+function filterRecursiveHeaders($dir) : array
+{
+    $files = scandir($dir);
+    
+    $arr = [];
+    
+    foreach($files as $_file)
+    {
+        if(in_array($_file, [ '.', '..', ]))
+        {
+            continue;
+        }
+        
+        $file = $dir . '/' . $_file;
+        
+        if(is_dir($file))
+        {
+            $arr = array_merge($arr, filterRecursiveHeaders($file));
+            
+            continue;
+        }
+        
+        // Faster than substr & strcmp maybe?
+        if(
+            // Isn't .h
+            (
+                $file[strlen($file) - 1] != 'h'
+                ||
+                $file[strlen($file) - 2] != '.'
+            )
+            ||
+            // Is a .h, but should be manually required
+            (
+                $file[strlen($file) - 3] == 'm'
+                &&
+                $file[strlen($file) - 4] == '.'
+            )
+        )
+        {
+            continue;
+        }
+        
+        $arr[] = $file;
+    }
+    
+    return $arr;
+}
+
 // Work based off of the command
 switch($cmd)
 {
@@ -45,6 +94,33 @@ switch($cmd)
     case 'ecs-dec':
     {
         include 'ecs_declarations.php';
+    }
+    
+    case 'includes':
+    {
+        $files = filterRecursiveHeaders('./src');
+        
+        $src = file_get_contents('./src/includes.h');
+        
+        $splitter = '/* GENERATE */';
+        
+        $src = explode($splitter, $src);
+        
+        if(count($src) != 3)
+        {
+            die('More than two splitters found!');
+        }
+        
+        $includes = "\n";
+        foreach($files as $file)
+        {
+            $includes .= '#include "' . str_replace('./src/', './', $file) . '"' . "\n";
+        }
+        $src[1] = $includes;
+        
+        $src = implode($splitter, $src);
+        
+        file_put_contents('./src/includes.h', $src);
     }
 }
 
