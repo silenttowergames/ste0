@@ -19,6 +19,7 @@
         },
         {
             "name": "Windows 64-bit Build GCC",
+            "miDebuggerPath": "gdb",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceRoot}/bin/win64/gcc/main.exe",
