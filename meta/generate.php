@@ -89,12 +89,12 @@ switch($cmd)
     case 'assets':
     {
         include 'assets.php';
-    }
+    } break;
     
     case 'ecs-dec':
     {
         include 'ecs_declarations.php';
-    }
+    } break;
     
     case 'includes':
     {
@@ -121,7 +121,7 @@ switch($cmd)
         $src = implode($splitter, $src);
         
         file_put_contents('./src/includes.h', $src);
-    }
+    } break;
     
     default:
     {
