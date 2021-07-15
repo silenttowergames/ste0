@@ -67,9 +67,67 @@ function filterRecursiveHeaders($dir) : array
     return $arr;
 }
 
+function factoryGen()
+{
+    $main = file_get_contents('./src/main.c');
+    
+    $splitter = '/* FACTORIES */';
+    
+    $main = explode($splitter, $main);
+    
+    if(count($main) != 3)
+    {
+        die("More than two splitters found!\n");
+    }
+    
+    $main[1] = '';
+    
+    $factoryFiles = scandir('./src/ECS/Entities/');
+    $factories = [];
+    $count = 0;
+    foreach($factoryFiles as $factoryFile)
+    {
+        if(in_array($factoryFile, [ '.', '..', ]))
+        {
+            continue;
+        }
+        
+        if(
+            $factoryFile[strlen($factoryFile) - 1] != 'c'
+            ||
+            $factoryFile[strlen($factoryFile) - 2] != '.'
+        )
+        {
+            continue;
+        }
+        
+        $factoryName = explode('Factory.', $factoryFile);
+        $factoryName = array_shift($factoryName);
+        
+        $factories[] = 'factory(' . $factoryName . ')';
+        
+        $count++;
+    }
+    
+    $main[1] =
+        "\n    factories(\n        $count,\n        "
+        .
+        implode(",\n        ", $factories)
+        .
+        "\n    );\n    "
+    ;
+    
+    file_put_contents('./src/main.c', implode($splitter, $main));
+}
+
 // Work based off of the command
 switch($cmd)
 {
+    case 'shaders':
+    {
+        echo exec('`pwd`/shaders.sh') . "\n";
+    } break;
+    
     case 'factory':
     {
         if(empty($argv))
@@ -84,7 +142,78 @@ switch($cmd)
         $template = file_get_contents('./meta/template__factory.c');
         $template = str_replace('_____NAME_____', $argv[0], $template);
         file_put_contents('./src/ECS/Entities/' . $argv[0] . 'Factory.c', $template);
+        
+        factoryGen();
     } break;
+    
+    case 'factory-gen':
+    {
+        factoryGen();
+    } break;
+    
+    case 'system':
+    {
+        if(empty($argv))
+        {
+            die("Factory: no name!\n");
+        }
+        
+        $name = array_shift($argv);
+        
+        $components = $argv;
+        
+        $componentsDec = [];
+        $componentsSet = [ 'i', ];
+        $includes = [
+            'ste' => [],
+            'local' => [],
+        ];
+        foreach($components as $key => $component)
+        {
+            // Create a list of component includes
+            if(file_exists('./src/ECS/Components/' . $component . '.h'))
+            {
+                $includes['local'][] = '#include "../Components/' . $component . '.h"';
+            }
+            else
+            {
+                $includes['ste'][] = '#include <STE/ECS/Components/' . $component . '.h>';
+            }
+            
+            // Come up with a variable name & add it to the list of declarations in the system
+            $varName = '';
+            $j = 0;
+            do {
+                $j++;
+                
+                $varName = strtolower(substr($component, 0, $j));
+                
+                if($j == strlen($component))
+                {
+                    echo "WARNING: Manually adjust variable names!\n";
+                    
+                    break;
+                }
+            }
+            while(in_array($varName, $componentsSet));
+            
+            $componentsSet[] = $varName;
+            
+            $componentsDec[] = $component . '* ' . $varName . ' = ecs_column(it, ' . $component . ', ' . ($key + 1) . ');';
+        }
+        $componentsDec = implode("\n    ", $componentsDec);
+        
+        $cfile = file_get_contents('./meta/template__system.c');
+        $cfile = str_replace('/* SYSTEM NAME */', $name, $cfile);
+        $cfile = str_replace('/* COMPONENT DECLARATIONS */', $componentsDec, $cfile);
+        $cfile = str_replace('/* STE COMPONENT INCLUDES */', implode("\n", $includes['ste']), $cfile);
+        $cfile = str_replace('/* COMPONENT INCLUDES */', implode("\n", $includes['local']), $cfile);
+        file_put_contents('./src/ECS/Systems/' . $name . 'System.c', $cfile);
+        
+        $cfile = file_get_contents('./meta/template__system.h');
+        $cfile = str_replace('/* SYSTEM NAME */', $name, $cfile);
+        file_put_contents('./src/ECS/Systems/' . $name . 'System.h', $cfile);
+    }
     
     case 'assets':
     {

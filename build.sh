@@ -7,7 +7,7 @@ function doFile {
     
     if [ "$1" -nt "$objf" ]; then
         echo "Compiling $objf..."
-        $COMPILER -g -c $1 -o $objf ${INCS[*]} &
+        $COMPILER $OPTIMIZE -g -c $1 -o $objf ${INCS[*]} &
         PIDS+=$!' '
     fi
     
@@ -76,6 +76,17 @@ if [ $3 ]; then
     COMPILERPP=$3
 fi
 
+RELEASE=0
+if [ $4 ]; then
+    RELEASE=1
+fi
+
+OPTIMIZE=''
+if [ $RELEASE -eq 1 ]; then
+    echo Release build!
+    OPTIMIZE='-O3'
+fi
+
 for i in $(seq 1 ${#INCS[*]})
 do
     INCS[$i - 1]='-I/C/libs/gcc/'$PLATFORM'/'${INCS[$i - 1]}
@@ -98,15 +109,18 @@ for pid in ${PIDS[*]}; do
     wait $pid
 done
 
+./g shaders
+
 if test -f ./bin/linux${PLATFORM}/${COMPILER}/main; then
     rm ./bin/linux${PLATFORM}/${COMPILER}/main
 fi
 
 echo Final compilation...
 
-$COMPILERPP -m${PLATFORM} -pthread -g ${OBJS[*]} StoneTower.o /C/libs/gcc/64/soloud-custom/built/*.o `sdl2-config --libs` ${INCS[*]} ${LIBS[*]} ${LFLAGS[*]} -Wl,-rpath=\$ORIGIN/libs -o ./bin/linux${PLATFORM}/${COMPILER}/main
+$COMPILERPP -m${PLATFORM} -pthread $OPTIMIZE -g ${OBJS[*]} StoneTower.o /C/libs/gcc/64/soloud-custom/built/*.o `sdl2-config --libs` ${INCS[*]} ${LIBS[*]} ${LFLAGS[*]} -Wl,-rpath=\$ORIGIN/libs -o ./bin/linux${PLATFORM}/${COMPILER}/main
 
 let END=`date +%s%N`-$START
 let ENDMS=$END/1000000
+let ENDS=$ENDMS/1000
 
-echo That took ${ENDMS}ms, or ${END} nanoseconds
+echo ${ENDS}s / ${ENDMS}ms / ${END}ns
