@@ -87,6 +87,7 @@
         "movesystem.h": "c",
         "factory.h": "c",
         "scenefunctions.h": "c",
-        "shaderfunctions.h": "c"
+        "shaderfunctions.h": "c",
+        "menuitemfunctions.h": "c"
     }
 }

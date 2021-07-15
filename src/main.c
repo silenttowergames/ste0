@@ -43,16 +43,13 @@ int main(int arcg, char* argv[])
         320, 180,
         1024, 1024,
         initWorld,
-        "map1",
+        "Title",
         RSZ_Floor
     );
     
     scenes(
-        4,
-        scene(initialize),
-        sceneTiled("map1", init2Scene),
-        sceneTiled("map0", NULL),
-        scene(init2)
+        1,
+        scene(Title)
     );
     
     /* RESOURCES */
@@ -97,7 +94,7 @@ int main(int arcg, char* argv[])
     
     renderTargets(
         1,
-        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 1, 0, 1, 1, })
+        RenderTarget_Create(&app, (int2d){ 320, 180, }, (int2d){ 320, 180, }, (int2d){ 0, 0, }, true, (FNA3D_Vec4){ 0, 0, 0, 1, })
     );
     
     gameDataInit(
