@@ -1,0 +1,2 @@
+main: /C/libs/gcc/64/stonetowerengine/src/STE/Application/ApplicationStateFunctions.c:338: ApplicationState_GetFactory: Assertion `fac != NULL' failed.
+main: /C/libs/gcc/64/stonetowerengine/src/STE/Application/ApplicationStateFunctions.c:338: ApplicationState_GetFactory: Assertion `fac != NULL' failed.

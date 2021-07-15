@@ -11,11 +11,18 @@ void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
     
+    // Some early preliminary stuff
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, PauseMenuSystem, EcsOnUpdate, Menu, PauseMenu);
-    ECS_SYSTEM(world, AINPCSystem, EcsOnUpdate, AINPC, Body);
-    ECS_SYSTEM(world, MoveSystem, EcsOnUpdate, AIPlayer, Body);
+    
+    // Paddle Systems
+    ECS_TAG(world, AIPaddlePlayer);
+    ECS_TAG(world, AIPaddleNPC);
+    ECS_SYSTEM(world, AIPaddlePlayerSystem, EcsOnUpdate, AIPaddle, AIPaddlePlayer, Body);
+    ECS_SYSTEM(world, AIPaddleNPCSystem, EcsOnUpdate, AIPaddle, AIPaddleNPC, Body);
+    ECS_SYSTEM(world, AIPaddleYSystem, EcsOnUpdate, AIPaddle, Body);
+    AIPaddleBallSystem_Init();
     
     BasicAABBSystem_Init();
     
@@ -48,8 +55,9 @@ int main(int arcg, char* argv[])
     );
     
     scenes(
-        1,
-        scene(Title)
+        2,
+        scene(Title),
+        scene(Paddle)
     );
     
     /* RESOURCES */
@@ -125,13 +133,16 @@ int main(int arcg, char* argv[])
     
     /* RESOURCES */
     
+    /* FACTORIES */
     factories(
-        4,
-        factory(Player),
-        factory(NPC),
-        factory(TextBox),
-        factory(TestMenu)
+        5,
+        factory(PaddleBall),
+        factory(Paddle),
+        factory(PaddleNPC),
+        factory(TestMenu),
+        factory(TextBox)
     );
+    /* FACTORIES */
     
     //*
     app.renderState.targets[0].shadersCount = 1;

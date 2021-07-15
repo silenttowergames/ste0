@@ -27,18 +27,15 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 0, 0, 255),
             0,
-            "This Is A Menu!",
-            false
+            "Stone Tower Engine",
+            true
         )
     );
-    menuEasy(items, currentItem, e, 5, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, true);
+    menuEasy(items, currentItem, e, 2, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, true);
     
     menuItemSetup(e, "PressStart2P/PressStart2P.ttf", 8, items);
     
-    menuItemSuperEasy("Play `Paddle`", MenuItem_Select_Test, NULL); // Pong
-    menuItemSuperEasy("Play `Jumper`", MenuItem_Select_Test, NULL); // Mario
-    menuItemSuperEasy("Play `Some Blocks`", MenuItem_Select_Test, NULL); // Bejeweled
-    menuItemSuperEasy("Item 4", MenuItem_Select_Test, NULL);
+    menuItemSuperEasy("Play `Paddle`", MenuItem_Select_PaddleScene, NULL);
     menuItemSuperEasy("Exit", MenuItem_Select_Exit, NULL);
     
     return e;

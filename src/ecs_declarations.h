@@ -19,6 +19,8 @@
     STE_ECS_COMPONENT_ ## de(w, TiledObject);\
     STE_ECS_COMPONENT_ ## de(w, TileLayerCollides);\
     STE_ECS_COMPONENT_ ## de(w, AINPC);\
+    STE_ECS_COMPONENT_ ## de(w, AIPaddle);\
+    STE_ECS_COMPONENT_ ## de(w, AIPaddleBall);\
     STE_ECS_COMPONENT_ ## de(w, AIPlayer)
 
 ECS_Setup(EXTERN, );

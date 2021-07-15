@@ -243,6 +243,11 @@ switch($cmd)
         $includes = "\n";
         foreach($files as $file)
         {
+            if($file == './src/includes.h')
+            {
+                continue;
+            }
+            
             $includes .= '#include "' . str_replace('./src/', './', $file) . '"' . "\n";
         }
         $src[1] = $includes;
