@@ -35,6 +35,8 @@ void PaddleScene(ecs_world_t* world)
 {
     ctx();
     
+    printf("okay\n");
+    
     app->renderState.targets[0].camera.position.X = app->renderState.targets[0].camera.resolution.X / 2;
     app->renderState.targets[0].camera.position.Y = app->renderState.targets[0].camera.resolution.Y / 2;
     

@@ -1,3 +1,4 @@
+#include <math.h>
 #include <STE/Application/ApplicationStateFunctions.h>
 #include <STE/ECS/FlecsFunctions.h>
 #include <STE/ECS/Components/Body.h>
@@ -6,14 +7,26 @@
 #include "AIPaddleBallSystemDefines.h"
 #include "../Components/AIPaddle.h"
 #include "../Components/AIPaddleBall.h"
+#include "../../ecs_declarations.h"
 
 void AIPaddleBallSystem(ecs_iter_t* it)
 {
     fctx();
     
+    printf("AIPaddleBallSystem:\n");
+    
     if(AIPaddleBallSystem_Query_Paddles == NULL)
     {
-        AIPaddleBallSystem_Query_Paddles = ecs_query_new(it->world, "AIPaddle,Body");
+        printf("AIPaddleBallSystem_Query_Paddles:\n");
+        
+        AIPaddleBallSystem_Query_Paddles = ecs_query_init(it->world, &(ecs_query_desc_t){
+            .filter.terms = {
+                { ecs_id(AIPaddle), },
+                { ecs_id(Body), },
+            },
+        });
+        
+        printf("AIPaddleBallSystem_Query_Paddlesed!\n");
     }
 	
 	AIPaddleBall* a = ecs_column(it, AIPaddleBall, 1);
@@ -50,6 +63,8 @@ void AIPaddleBallSystem(ecs_iter_t* it)
         // If we haven't touched on X, run the query
         if(!touchingX)
         {
+            printf("Starting internal query\n");
+            
             ecs_iter_t iter = ecs_query_iter(AIPaddleBallSystem_Query_Paddles);
             while(ecs_query_next(&iter))
             {

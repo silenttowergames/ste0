@@ -1,3 +1,4 @@
+#include <math.h>
 #include <STE/Application/ApplicationStateFunctions.h>
 #include <STE/ECS/FlecsFunctions.h>
 #include <STE/ECS/Components/Body.h>

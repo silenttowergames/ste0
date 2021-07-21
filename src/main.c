@@ -9,12 +9,17 @@ ECS_Setup(DECLARE, );
 
 void initWorld(ecs_world_t* world)
 {
+    printf("Initializing world...\n");
+    
     ECS_Setup(DEFINE, world);
+    printf("Defines\n");
     
     // Some early preliminary stuff
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, PauseMenuSystem, EcsOnUpdate, Menu, PauseMenu);
+    
+    printf("3 systems\n");
     
     // Paddle Systems
     ECS_TAG(world, AIPaddlePlayer);
@@ -22,24 +27,45 @@ void initWorld(ecs_world_t* world)
     ECS_SYSTEM(world, AIPaddlePlayerSystem, EcsOnUpdate, AIPaddle, AIPaddlePlayer, Body);
     ECS_SYSTEM(world, AIPaddleNPCSystem, EcsOnUpdate, AIPaddle, AIPaddleNPC, Body);
     ECS_SYSTEM(world, AIPaddleYSystem, EcsOnUpdate, AIPaddle, Body);
-    AIPaddleBallSystem_Init();
+    
+    // FAILS TO INIT
+    //AIPaddleBallSystem_Init();
+    AIPaddleBallSystem_Query_Paddles = NULL;
+    ECS_SYSTEM(world, AIPaddleBallSystem, EcsOnUpdate, AIPaddleBall, Body);
+    
+    printf("4 more systems\n");
     
     BasicAABBSystem_Init();
+    printf("1 more systems\n");
     
     MenuSystem_Init();
+    printf("1 more systems\n");
     
     DebugMovableSystem_Init();
+    printf("1 more systems\n");
     
     ECS_SYSTEM(world, CameraFollowSystem, EcsOnUpdate, Body, CameraFollow, Renderable);
     ECS_SYSTEM(world, DepthSystem, EcsOnUpdate, Body, Renderable);
     ECS_SYSTEM(world, AnimateSystem, EcsOnUpdate, Animate, Renderable);
+    printf("3 more systems\n");
     
-    DrawSystem_Init();
+    // FAILS TO INIT
+    //DrawSystem_Init();
+    ECS_SYSTEM(world, DrawSystem, EcsOnUpdate, Body, Renderable);
+    ECS_SYSTEM(world, FinalizeScreenSystem, EcsOnUpdate, 0);
+    const EcsQuery* sort = ecs_get(world, DrawSystem, EcsQuery);
+    //ecs_query_order_by(world, sort->query, ecs_entity(Renderable), SortByLayerThenY);
+    //ecs_query_order_by(world, sort->query, ecs_entity(Renderable), NULL);
+    printf("1 more systems\n");
+    
+    printf("World initialized!\n");
 }
 
 int main(int arcg, char* argv[])
 {
     configDefault(config, 1280, 720, "en", true);
+    
+    printf("Init\n");
     
     init(
         "Engine Test",
@@ -50,7 +76,7 @@ int main(int arcg, char* argv[])
         320, 180,
         1024, 1024,
         initWorld,
-        "Title",
+        "Paddle",
         RSZ_Floor
     );
     
@@ -59,6 +85,8 @@ int main(int arcg, char* argv[])
         scene(Title),
         scene(Paddle)
     );
+    
+    printf("Resources:\n");
     
     /* RESOURCES */
     
@@ -133,6 +161,10 @@ int main(int arcg, char* argv[])
     
     /* RESOURCES */
     
+    printf("Resources done!\n");
+    
+    printf("Factories:\n");
+    
     /* FACTORIES */
     factories(
         5,
@@ -144,6 +176,8 @@ int main(int arcg, char* argv[])
     );
     /* FACTORIES */
     
+    printf("Factorties done!\n");
+    
     //*
     app.renderState.targets[0].shadersCount = 1;
     app.renderState.targets[0].shaders = malloc(sizeof(Shader*) * app.renderState.targets[0].shadersCount);
@@ -153,6 +187,8 @@ int main(int arcg, char* argv[])
     app.renderState.mainRenderTarget.shaders[0] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
     //app.renderState.mainRenderTarget.shaders[1] = *mapGet(app.assetManager.mapShader, "CRTShader", Shader*);
     //*/
+    
+    printf("Loop:\n");
     
     loop();
     

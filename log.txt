@@ -1,2 +1,13 @@
-main: /C/libs/gcc/64/stonetowerengine/src/STE/Application/ApplicationStateFunctions.c:338: ApplicationState_GetFactory: Assertion `fac != NULL' failed.
-main: /C/libs/gcc/64/stonetowerengine/src/STE/Application/ApplicationStateFunctions.c:338: ApplicationState_GetFactory: Assertion `fac != NULL' failed.
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+apitrace: unloaded from C:\C\apps\ste0\bin\win64\gcc\main.exe
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+apitrace: unloaded from C:\C\apps\ste0\bin\win64\gcc\main.exe
+[0;31merr [0;49m: [0;37m[0;49massert(!world->is_fini) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\query.c:[0;32m2143[0;49m: invalid operation
+apitrace: unloaded from C:\C\apps\ste0\bin\win64\gcc\main.exe
+[0;31merr [0;49m: [0;37m[0;49massert(sparse != NULL) C:\C\libs\gcc\[0;32m64[0;49m\flecs-master\src\sparse.c:[0;32m400[0;49m: invalid parameter

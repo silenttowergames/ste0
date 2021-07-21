@@ -8,7 +8,9 @@
 void AIPaddlePlayerSystem(ecs_iter_t* it)
 {
     fctx();
-	
+    
+    printf("AIPaddlePlayerSystem:\n");
+    
 	AIPaddle* a = ecs_column(it, AIPaddle, 1);
     Body* b = ecs_column(it, Body, 3);
     
@@ -24,4 +26,6 @@ void AIPaddlePlayerSystem(ecs_iter_t* it)
             b[i].position.Y -= a[i].speed;
         }
     }
+    
+    printf("AIPaddlePlayerSystemed!\n");
 }
