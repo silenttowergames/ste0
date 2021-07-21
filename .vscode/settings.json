@@ -92,6 +92,7 @@
         "aipaddleysystem.h": "c",
         "aipaddleplayersystem.h": "c",
         "aipaddleballsystemqueries.h": "c",
-        "aipaddleballsystemdefines.h": "c"
+        "aipaddleballsystemdefines.h": "c",
+        "aipaddleballsystem.h": "c"
     }
 }
