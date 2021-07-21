@@ -10,13 +10,13 @@
 #include <STE/ECS/Components/MenuFunctions.h>
 #include <STE/ECS/Components/MenuItemFunctions.h>
 #include "TestMenuFactory.h"
+#include "../../MenuItemFunctions.h"
 
 ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, TiledJSONObject* object)
 {
     ctx();
     
     ecs_entity_t e = ecs_new(world, 0);
-    
     ecs_set(world, e, Body, bodyEasy(X, Y));
     ecs_set(world, e, Renderable,
         RenderableText(
@@ -27,107 +27,16 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             0,
             colorU(255, 0, 0, 255),
             0,
-            "This Is A Menu!",
-            false
+            "Stone Tower Engine",
+            true
         )
     );
-    menuEasy(items, currentItem, e, 5, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, false);
-    ecs_set(world, e, PauseMenu, { true, });
+    menuEasy(items, currentItem, e, 2, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, true);
     
-    menuItemEasy(
-        e,
-        items,
-        currentItem,
-        RenderableText(
-            "PressStart2P/PressStart2P.ttf",
-            8,
-            layer,
-            1,
-            0,
-            colorU(255, 255, 255, 255),
-            0,
-            "Item 0",
-            false
-        ),
-        MenuItem_Select_Test,
-        NULL
-    );
+    menuItemSetup(e, "PressStart2P/PressStart2P.ttf", 8, items);
     
-    menuItemEasy(
-        e,
-        items,
-        currentItem,
-        RenderableText(
-            "PressStart2P/PressStart2P.ttf",
-            8,
-            layer,
-            1,
-            0,
-            colorU(255, 255, 255, 255),
-            0,
-            "Item 1",
-            false
-        ),
-        MenuItem_Select_Test,
-        NULL
-    );
-    
-    menuItemEasy(
-        e,
-        items,
-        currentItem,
-        RenderableText(
-            "PressStart2P/PressStart2P.ttf",
-            8,
-            layer,
-            1,
-            0,
-            colorU(255, 255, 255, 255),
-            0,
-            "Disable",
-            false
-        ),
-        MenuItem_Select_Disable,
-        NULL
-    );
-    
-    menuItemEasy(
-        e,
-        items,
-        currentItem,
-        RenderableText(
-            "PressStart2P/PressStart2P.ttf",
-            8,
-            layer,
-            1,
-            0,
-            colorU(255, 255, 255, 255),
-            0,
-            "Item 3",
-            false
-        ),
-        MenuItem_Select_Test,
-        NULL
-    );
-    
-    menuItemEasy(
-        e,
-        items,
-        currentItem,
-        RenderableText(
-            "PressStart2P/PressStart2P.ttf",
-            8,
-            layer,
-            1,
-            0,
-            colorU(255, 255, 255, 255),
-            0,
-            "Item 4",
-            false
-        ),
-        MenuItem_Select_Test,
-        NULL
-    );
+    menuItemSuperEasy("Play `Paddle`", MenuItem_Select_PaddleScene, NULL);
+    menuItemSuperEasy("Exit", MenuItem_Select_Exit, NULL);
     
     return e;
 }

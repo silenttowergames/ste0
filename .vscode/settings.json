@@ -87,6 +87,11 @@
         "movesystem.h": "c",
         "factory.h": "c",
         "scenefunctions.h": "c",
-        "shaderfunctions.h": "c"
+        "shaderfunctions.h": "c",
+        "menuitemfunctions.h": "c",
+        "aipaddleysystem.h": "c",
+        "aipaddleplayersystem.h": "c",
+        "aipaddleballsystemqueries.h": "c",
+        "aipaddleballsystemdefines.h": "c"
     }
 }

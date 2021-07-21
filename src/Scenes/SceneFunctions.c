@@ -24,19 +24,23 @@ void initializeScene(ecs_world_t* world)
     factoryRun(app, "TextBox", 0, 0, 2, NULL);
 }
 
-void init2Scene(ecs_world_t* world)
+void TitleScene(ecs_world_t* world)
 {
     ctx();
     
-    factoryRun(app, "TextBox", -20, -20, 2, NULL);
+    factoryRun(app, "TestMenu", -128, -32, 0, NULL);
+}
+
+void PaddleScene(ecs_world_t* world)
+{
+    ctx();
     
-    for(int x = 0; x < 28; x++)
-    {
-        for(int y = 0; y < 18; y++)
-        {
-            factoryRun(app, "NPC", 80 + (x * 12), 80 + (y * 12), 2, NULL);
-        }
-    }
+    app->renderState.targets[0].camera.position.X = app->renderState.targets[0].camera.resolution.X / 2;
+    app->renderState.targets[0].camera.position.Y = app->renderState.targets[0].camera.resolution.Y / 2;
     
-    factoryRun(app, "TestMenu", -120, -40, 5, NULL);
+    factoryRun(app, "PaddleBall", app->renderState.resolution.X / 2, app->renderState.resolution.Y / 2, 0, NULL);
+    
+    factoryRun(app, "Paddle", 8, app->renderState.resolution.Y / 2, 0, NULL);
+    
+    factoryRun(app, "PaddleNPC", app->renderState.resolution.X - 8, app->renderState.resolution.Y / 2, 0, NULL);
 }
