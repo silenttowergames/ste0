@@ -20,14 +20,14 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
     ecs_set(world, e, Body, bodyEasy(X, Y));
     ecs_set(world, e, Renderable,
         RenderableText(
-            "Bloodyslime/Bloodyslime.ttf",
-            32,
+            "PressStart2P/PressStart2P.ttf",
+            8,
             layer,
             1,
             0,
             colorU(255, 0, 0, 255),
             0,
-            "Stone Tower Engine",
+            "59.999994",
             true
         )
     );

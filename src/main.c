@@ -119,7 +119,7 @@ int main(int arcg, char* argv[])
     
     ConsoleCommand_AddAll(
         &app,
-        9,
+        10,
         ConsoleCommand_Create("exit", cmdExit),
         ConsoleCommand_Create("play", cmdPlaySound),
         ConsoleCommand_Create("volume", cmdVolume),
@@ -128,7 +128,8 @@ int main(int arcg, char* argv[])
         ConsoleCommand_Create("unpause", cmdUnpause),
         ConsoleCommand_Create("website", cmdWebsite),
         ConsoleCommand_Create("reload-map", cmdReloadMap),
-        ConsoleCommand_Create("movable", cmdMovable)
+        ConsoleCommand_Create("movable", cmdMovable),
+        ConsoleCommand_Create("fps", cmdShowFPS)
     );
     
     /* RESOURCES */
