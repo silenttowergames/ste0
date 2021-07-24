@@ -93,6 +93,8 @@
         "aipaddleplayersystem.h": "c",
         "aipaddleballsystemqueries.h": "c",
         "aipaddleballsystemdefines.h": "c",
-        "aipaddleballsystem.h": "c"
+        "aipaddleballsystem.h": "c",
+        "basicmenusystem.h": "c",
+        "menufunctions.h": "c"
     }
 }
