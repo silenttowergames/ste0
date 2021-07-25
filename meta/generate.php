@@ -120,6 +120,38 @@ function factoryGen()
     file_put_contents('./src/main.c', implode($splitter, $main));
 }
 
+function includesGen()
+{
+    $files = filterRecursiveHeaders('./src');
+    
+    $src = file_get_contents('./src/includes.h');
+    
+    $splitter = '/* GENERATE */';
+    
+    $src = explode($splitter, $src);
+    
+    if(count($src) != 3)
+    {
+        die("More than two splitters found!\n");
+    }
+    
+    $includes = "\n";
+    foreach($files as $file)
+    {
+        if($file == './src/includes.h')
+        {
+            continue;
+        }
+        
+        $includes .= '#include "' . str_replace('./src/', './', $file) . '"' . "\n";
+    }
+    $src[1] = $includes;
+    
+    $src = implode($splitter, $src);
+    
+    file_put_contents('./src/includes.h', $src);
+}
+
 // Work based off of the command
 switch($cmd)
 {
@@ -227,34 +259,7 @@ switch($cmd)
     
     case 'includes':
     {
-        $files = filterRecursiveHeaders('./src');
-        
-        $src = file_get_contents('./src/includes.h');
-        
-        $splitter = '/* GENERATE */';
-        
-        $src = explode($splitter, $src);
-        
-        if(count($src) != 3)
-        {
-            die("More than two splitters found!\n");
-        }
-        
-        $includes = "\n";
-        foreach($files as $file)
-        {
-            if($file == './src/includes.h')
-            {
-                continue;
-            }
-            
-            $includes .= '#include "' . str_replace('./src/', './', $file) . '"' . "\n";
-        }
-        $src[1] = $includes;
-        
-        $src = implode($splitter, $src);
-        
-        file_put_contents('./src/includes.h', $src);
+        includesGen();
     } break;
     
     default:
