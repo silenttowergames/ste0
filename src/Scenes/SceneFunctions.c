@@ -43,4 +43,6 @@ void PaddleScene(ecs_world_t* world)
     factoryRun(app, "Paddle", 8, app->renderState.resolution.Y / 2, 0, NULL);
     
     factoryRun(app, "PaddleNPC", app->renderState.resolution.X - 8, app->renderState.resolution.Y / 2, 0, NULL);
+    
+    factoryRun(app, "PaddleScores", 0, 0, 1, NULL);
 }

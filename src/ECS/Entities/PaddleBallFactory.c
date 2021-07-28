@@ -17,7 +17,7 @@ ecs_entity_t PaddleBallFactory(ecs_world_t* world, float X, float Y, int layer, 
     
     ecs_set(world, e, AIPaddleBall, {
         .velocity = {
-            .X = -5.0f,
+            .X = -3.0f,
             .Y = 0.0f,
         },
     });

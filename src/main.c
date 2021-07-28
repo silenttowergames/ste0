@@ -11,6 +11,9 @@ void initWorld(ecs_world_t* world)
 {
     ECS_Setup(DEFINE, world);
     
+    // Init
+    AIPaddleNPCSystem_Init(world);
+    
     // Some early preliminary stuff
     ECS_SYSTEM(world, EngineUpdateSystem, EcsOnUpdate, 0);
     ECS_SYSTEM(world, FullscreenShortcutSystem, EcsOnUpdate, 0);
@@ -29,6 +32,8 @@ void initWorld(ecs_world_t* world)
     MenuSystem_Init();
     
     DebugMovableSystem_Init();
+    
+    ECS_SYSTEM(world, SettingsSystem, EcsOnUpdate, 0);
     
     ECS_SYSTEM(world, CameraFollowSystem, EcsOnUpdate, Body, CameraFollow, Renderable);
     ECS_SYSTEM(world, DepthSystem, EcsOnUpdate, Body, Renderable);
@@ -93,9 +98,13 @@ int main(int arcg, char* argv[])
     );
     
     sounds(
-        4,
+        8,
         Sound_create_load("calm-example.ogg", Play_StopAll, SoundCategory_Music),
         Sound_create_load("hit.ogg", Play_StopOne, SoundCategory_SFX),
+        Sound_create_load("paddle-blip-high.ogg", Play_StopAll, SoundCategory_SFX),
+        Sound_create_load("paddle-blip-low.ogg", Play_StopAll, SoundCategory_SFX),
+        Sound_create_load("paddle-fail.ogg", Play_StopAll, SoundCategory_SFX),
+        Sound_create_load("paddle-win.ogg", Play_StopAll, SoundCategory_SFX),
         Sound_create_speech("speech0", "Uncompromised", Play_Default, SoundCategory_SFX),
         Sound_create_sfxr("sfxr", Play_Default, SoundCategory_SFX)
     );
@@ -106,7 +115,9 @@ int main(int arcg, char* argv[])
     );
     
     gameDataInit(
-        8,
+        10,
+        gdAttr("Scores", "left", 3, Int),
+        gdAttr("Scores", "right", 0, Int),
         gdAttr("Bools", "isThisTrue", true, Bool),
         gdAttr("Bools", "isThisFalse", false, Bool),
         gdAttr("Floats", "piApprox", 3.141592, Float),
@@ -136,10 +147,11 @@ int main(int arcg, char* argv[])
     
     /* FACTORIES */
     factories(
-        5,
+        6,
         factory(PaddleBall),
         factory(Paddle),
         factory(PaddleNPC),
+        factory(PaddleScores),
         factory(TestMenu),
         factory(TextBox)
     );
