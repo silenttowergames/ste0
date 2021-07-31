@@ -21,31 +21,31 @@ void SettingsSystem(ecs_iter_t* it)
 	if(keys(Pressed, x))
 	{
         printf("Setting world timescale to 1.0\n");
-		ecs_set_time_scale(it->world, 1);
+		ecs_set_time_scale(app->world, 1);
 	}
 	
 	if(keys(Pressed, u))
 	{
         printf("Setting world timescale to 2.0\n");
-		ecs_set_time_scale(it->world, 2);
+		ecs_set_time_scale(app->world, 2);
 	}
 	
 	if(keys(Pressed, i))
 	{
         printf("Setting world timescale to 0.5\n");
-		ecs_set_time_scale(it->world, 0.5f);
+		ecs_set_time_scale(app->world, 0.5f);
 	}
 	
 	if(keys(Pressed, o))
 	{
         printf("Setting world timescale to 5.0\n");
-		ecs_set_time_scale(it->world, 5);
+		ecs_set_time_scale(app->world, 5);
 	}
 	
 	if(keys(Pressed, p))
 	{
         printf("Setting world timescale to 0.0\n");
-		ecs_set_time_scale(it->world, 0.0f);
+		ecs_set_time_scale(app->world, 0.0f);
 	}
 	
 	if(keys(Pressed, x))

@@ -16,12 +16,12 @@ void AIPaddlePlayerSystem(ecs_iter_t* it)
     {
         if(keys(Down, DOWN))
         {
-            b[i].position.Y += a[i].speed;
+            b[i].position.Y += a[i].speed * fdelta();
         }
         
         if(keys(Down, UP))
         {
-            b[i].position.Y -= a[i].speed;
+            b[i].position.Y -= a[i].speed * fdelta();
         }
     }
 }

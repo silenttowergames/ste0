@@ -37,6 +37,6 @@ void AIPaddleNPCSystem(ecs_iter_t* it)
     
     for(int i = 0; i < it->count; i++)
     {
-        b[i].position.Y += (ballPos.Y - b[i].position.Y) / 5.0f;
+        b[i].position.Y += ((ballPos.Y - b[i].position.Y) / 5.0f) * fdelta();
     }
 }

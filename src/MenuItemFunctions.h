@@ -6,3 +6,6 @@
 
 void MenuItem_Select_Exit(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu);
 void MenuItem_Select_PaddleScene(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu);
+void MenuItem_Select_PlayMusic(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu);
+void MenuItem_Select_PlaySFX(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu);
+void MenuItem_Update_SetVolumeSFX(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu);

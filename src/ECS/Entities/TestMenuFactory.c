@@ -11,6 +11,7 @@
 #include <STE/ECS/Components/MenuItemFunctions.h>
 #include "TestMenuFactory.h"
 #include "../../MenuItemFunctions.h"
+#include "TestMenuFactoryExtern.h"
 
 ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, TiledJSONObject* object)
 {
@@ -31,11 +32,31 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
             true
         )
     );
-    menuEasy(items, currentItem, e, 2, Menu_ItemUpdate_Basic, Menu_MenuUpdate_Basic, true);
+    menuEasy(
+        // Sets this var
+        items,
+        // Sets this var
+        currentItem,
+        // Menu entity ID
+        e,
+        // Number of items
+        7,
+        // Run this for each item
+        Menu_ItemUpdate_Basic,
+        // Run this for the menu
+        Menu_MenuUpdate_Basic,
+        // Active?
+        true
+    );
     
     menuItemSetup(e, "PressStart2P/PressStart2P.ttf", 8, items);
     
     menuItemSuperEasy("Play `Paddle`", MenuItem_Select_PaddleScene, NULL);
+    menuItemSuperEasy(TestMenuFactory_String_Volume_Master, NULL, NULL);
+    menuItemSuperEasy(TestMenuFactory_String_Volume_Music, NULL, NULL);
+    menuItemSuperEasy(TestMenuFactory_String_Volume_SFX, NULL, MenuItem_Update_SetVolumeSFX);
+    menuItemSuperEasy("Play SFX", MenuItem_Select_PlaySFX, NULL);
+    menuItemSuperEasy("Play Song", MenuItem_Select_PlayMusic, NULL);
     menuItemSuperEasy("Exit", MenuItem_Select_Exit, NULL);
     
     return e;
