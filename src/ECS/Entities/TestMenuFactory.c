@@ -52,8 +52,8 @@ ecs_entity_t TestMenuFactory(ecs_world_t* world, float X, float Y, int layer, Ti
     menuItemSetup(e, "PressStart2P/PressStart2P.ttf", 8, items);
     
     menuItemSuperEasy("Play `Paddle`", MenuItem_Select_PaddleScene, NULL);
-    menuItemSuperEasy(TestMenuFactory_String_Volume_Master, NULL, NULL);
-    menuItemSuperEasy(TestMenuFactory_String_Volume_Music, NULL, NULL);
+    menuItemSuperEasy(TestMenuFactory_String_Volume_Master, NULL, MenuItem_Update_SetVolumeMaster);
+    menuItemSuperEasy(TestMenuFactory_String_Volume_Music, NULL, MenuItem_Update_SetVolumeMusic);
     menuItemSuperEasy(TestMenuFactory_String_Volume_SFX, NULL, MenuItem_Update_SetVolumeSFX);
     menuItemSuperEasy("Play SFX", MenuItem_Select_PlaySFX, NULL);
     menuItemSuperEasy("Play Song", MenuItem_Select_PlayMusic, NULL);

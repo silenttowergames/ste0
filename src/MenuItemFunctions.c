@@ -25,17 +25,56 @@ void MenuItem_Select_PlaySFX(ApplicationState* app, ecs_world_t* world, ecs_enti
     soundPlayFull("hit.ogg", 1.0f, 0.0f, 0.0f, 1.0f, false);
 }
 
-void MenuItem_Update_SetVolumeSFX(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu)
+static void MenuItem_Update_SetVolumeGeneric(float* volume, char* string, char* prefix, bool isActive, bool inputAdd, bool inputSubtract)
 {
-    if(keys(Pressed, RIGHT))
+    if(isActive)
     {
-        app->config.volumeSFX += 0.1f;
+        if(inputAdd)
+        {
+            *volume += 0.1f;
+        }
+        
+        if(inputSubtract)
+        {
+            *volume -= 0.1f;
+        }
     }
     
-    if(keys(Pressed, LEFT))
-    {
-        app->config.volumeSFX -= 0.1f;
-    }
-    
-    sprintf(TestMenuFactory_String_Volume_SFX, "SFX Volume: %1.1f", app->config.volumeSFX);
+    sprintf(string, "%s Volume: %1.1f", prefix, *volume);
+}
+
+void MenuItem_Update_SetVolumeMaster(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu, bool isActive)
+{
+    MenuItem_Update_SetVolumeGeneric(
+        &app->config.volumeMaster,
+        TestMenuFactory_String_Volume_Master,
+        "Master",
+        isActive,
+        keys(Held, RIGHT),
+        keys(Held, LEFT)
+    );
+}
+
+void MenuItem_Update_SetVolumeMusic(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu, bool isActive)
+{
+    MenuItem_Update_SetVolumeGeneric(
+        &app->config.volumeMusic,
+        TestMenuFactory_String_Volume_Music,
+        "Music",
+        isActive,
+        keys(Held, RIGHT),
+        keys(Held, LEFT)
+    );
+}
+
+void MenuItem_Update_SetVolumeSFX(ApplicationState* app, ecs_world_t* world, ecs_entity_t entityID, Menu* menu, bool isActive)
+{
+    MenuItem_Update_SetVolumeGeneric(
+        &app->config.volumeSFX,
+        TestMenuFactory_String_Volume_SFX,
+        "SFX",
+        isActive,
+        keys(Held, RIGHT),
+        keys(Held, LEFT)
+    );
 }
