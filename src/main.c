@@ -42,7 +42,7 @@ void initWorld(ecs_world_t* world)
     DrawSystem_Init();
 }
 
-int main(int arcg, char* argv[])
+int main(int argc, char* argv[])
 {
     configDefault(config, 1280, 720, "en", true);
     
@@ -58,6 +58,13 @@ int main(int arcg, char* argv[])
         "Title",
         RSZ_Floor
     );
+    
+    if(argc > 1 && strcmp("getpath", argv[1]) == 0)
+    {
+        printf("%s", app.savePath);
+        
+        return 0;
+    }
     
     scenes(
         2,
