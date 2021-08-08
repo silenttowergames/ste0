@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
     
     gameDataInit(
         10,
-        gdAttr("Scores", "left", 3, Int),
+        gdAttr("Scores", "left", 0, Int),
         gdAttr("Scores", "right", 0, Int),
         gdAttr("Bools", "isThisTrue", true, Bool),
         gdAttr("Bools", "isThisFalse", false, Bool),
